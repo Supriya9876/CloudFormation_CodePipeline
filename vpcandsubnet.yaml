@@ -5,7 +5,11 @@ Parameters:
   VPCCidr:
     Type: String
     Default: 10.0.0.0/16
-    Description: CIDR block for the VPC
+    Description: CIDR block for the VPc
+  PublicSubnetCidr1: 10.4.1.0/24
+  PublicSubnetCidr2: 10.4.2.0/24
+  PrivateSubnetCidr1: 10.4.3.0/24
+  PrivateSubnetCidr2: 10.4.4.0/24
 
 Resources:
   MyVPC:
@@ -20,7 +24,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref MyVPC
-      CidrBlock: 10.0.1.0/24
+      CidrBlock: !Ref PublicSubnetCidr1
       AvailabilityZone: !Select [0, !GetAZs '']
       MapPublicIpOnLaunch: true
       Tags:
@@ -31,7 +35,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref MyVPC
-      CidrBlock: 10.0.2.0/24
+      CidrBlock: !Ref PublicSubnetCidr2
       AvailabilityZone: !Select [1, !GetAZs '']
       MapPublicIpOnLaunch: true
       Tags:
@@ -42,7 +46,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref MyVPC
-      CidrBlock: 10.0.3.0/24
+      CidrBlock: !Ref PrivateSubnetCidr1
       AvailabilityZone: !Select [0, !GetAZs '']
       MapPublicIpOnLaunch: false
       Tags:
@@ -53,7 +57,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref MyVPC
-      CidrBlock: 10.0.4.0/24
+      CidrBlock: !Ref PrivateSubnetCidr2
       AvailabilityZone: !Select [1, !GetAZs '']
       MapPublicIpOnLaunch: false
       Tags:
