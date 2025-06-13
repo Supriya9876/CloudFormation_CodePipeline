@@ -34,7 +34,7 @@ Resources:
       CidrBlock: !Ref VPCCidr
       Tags:
         - Key: Name
-          Value: !Sub "My-Stack-VPC-${AWS::Region}"
+          Value: !Sub "My-VPC-${AWS::Region}"
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
